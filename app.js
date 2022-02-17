@@ -74,7 +74,7 @@ const addLetter = (letter) => {
 const handleClick = (letter) => {
   console.log("clicked", letter);
   if (letter === "«") {
-    console.log("delete");
+    deleteLetter();
     return;
   }
   if (letter === "ENTER") {
@@ -91,3 +91,15 @@ keys.forEach((key) => {
   buttonElement.addEventListener("click", () => handleClick(key));
   keyboard.append(buttonElement);
 });
+
+const deleteLetter = () => {
+  if (currentTile > 0) {
+    currentTile--;
+    const tile = document.getElementById(
+      "guessrow-" + currentRow + "-tile-" + currentTile
+    );
+    tile.textContent = "";
+    guessRows[currentRow][currentTile] = "";
+    tile.setAttribute("data", "");
+  }
+};
